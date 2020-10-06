@@ -90,6 +90,7 @@
     <script>
         function eliminaragenda() {
             $('#frmEliminar').attr('action', '{% url 'base:eliminar_cita' 0%} ')
+            $('#frmEliminar').attr('method', 'post')
             if (confirm('¿Seguro desea eliminar la cita?')) {
                 document.frmEliminar.submit();
             }
