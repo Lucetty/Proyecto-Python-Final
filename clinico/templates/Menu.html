@@ -1,0 +1,90 @@
+{% extends "Principal.html" %}
+{% load static %}
+{% block body %}
+    <img id="fondo2" src="{% static "image/295067 1.png" %}" alt="Fondo Clinico">
+    <div id="navegador">
+        <u>
+            <ul>
+                <li><a href="#">Inicio/</a></li>
+
+            </ul>
+        </u>
+    </div>
+    <div class="row" id="conta"></div>
+    <br>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+            <center>
+                <a href="/base/paciente/" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/crowd_patient_icon_140575.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Paciente</h5>
+                            <p class="card-text">Listado de Pacientes</p>
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="/base/Agenda/" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/calendar-with-a-clock-time-tools_icon-icons.com_56831.png" %}"
+                             alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Agenda</h5>
+                            <p class="card-text">Agenda de Citas</p>
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="/base/Doctor/" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/doctor.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Doctor</h5>
+                            <p class="card-text">Listado de Doctores</p>
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="/base/Configuracion/" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Configuracion</h5>
+                            <p class="card-text">Mantenimientos</p>
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="/admin/" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/persona.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Administrador</h5>
+                            <p class="card-text">Pagina de Administracion</p>
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+
+    </div>
+{% endblock %}

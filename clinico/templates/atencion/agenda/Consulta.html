@@ -1,0 +1,428 @@
+{% extends "Principal.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/fontawesome.css" %}">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/brands.css" %}">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/solid.css" %}">
+{% endblock %}
+{% block body %}
+    <img id="fondo2" src="{% static "image/295067 1.png" %}" alt="Fondo Clinico">
+    <div id="navegador">
+        <u>
+            <ul>
+                <li><a href="/">Inicio/</a></li>
+                <li><a href="/base/Agenda/">Agenda/</a></li>
+                <li><a>Consulta/</a></li>
+            </ul>
+        </u>
+    </div>
+    <div class="row" id="conta"></div>
+    <br>
+    <form>
+        <div class="row">
+            <div class="col-md-12">
+                <u>
+                    <h3>Consulta</h3>
+                </u>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a style="color: black" data-toggle="tab" href="#Receta">ATENCION</a></li>
+                    <li><a style="color: black" data-toggle="tab" href="#antecedentes">RECETA</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="Receta" class="tab-pane fade in active">
+                        <form method="post">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <label for="Nombre">Paciente</label>
+                                    <input type="hidden" name="paciente" id="id_paciente" value="{{ paciente.id }}">
+                                    <input type="text" onfocus="this.blur()" name="paciente_nombre"
+                                           value="{{ paciente.nombre }} {{ paciente.apellido }}" class="form-control"
+                                           id="id_paciente_nombre">
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Apellido">Fecha de Atencion</label>
+                                    {{ receta.fecha }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Nombre">Hora</label>
+                                    {{ receta.hora }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Apellido">Motivo de Consulta</label>
+                                    <input type="text" name="motivo" class="form-control" maxlength="50" required=""
+                                           id="id_motivo" value="{{ agenda.motivo }}" onfocus="this.blur()">
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Nombre">Sintoma</label>
+                                    {{ receta.sintoma }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Apellido">Exploracion Fisica</label>
+                                    {{ receta.exploracion }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Nombre">Diagnostico</label>
+                                    {{ receta.diagnostico }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Apellido">Gabinete</label>
+                                    {{ receta.gabinete }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Nombre">Instruccion Medica</label>
+                                    {{ receta.instrucciones }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Apellido">Estado</label>
+                                    {{ receta.estado }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <button class="btn btn-primary btn-block" id="id_registrar_consulta"
+                                            type="button">Registrar Consulta
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="antecedentes" class="tab-pane fade">
+                        <div class="card table-responsive">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form method="POST">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="Nombre">Medicamento</label>
+                                                {{ detareceta.medicamento }}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="Apellido">Cantidad</label>
+                                                {{ detareceta.cantidad }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="Nombre">Dosis</label>
+                                                {{ detareceta.dosis }}
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="Apellido">Frecuencia</label>
+                                                {{ detareceta.frecuencia }}
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label for="Nombre">Duracion</label>
+                                                {{ detareceta.duracion }}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+
+                                            <div class="form-group col-md-12">
+                                                <button class="btn btn-primary btn-block" id="id_registrar_antecedente"
+                                                        type="button">Registrar
+                                                    Medicina
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+
+                                    </form>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <table class="table table-hover table-striped  m-1 ">
+                                        <thead class="bg-success text-light">
+                                        <tr class="h5">
+                                            <th>Medicina</th>
+                                            <th>cantidad</th>
+                                            <th>dosis</th>
+                                            <th>frecuencia</th>
+                                            <th>duracion</th>
+                                            <th class="text-center">Acciones</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody class="delegacion-container" id="id_contenedor">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-block" id="id_actualizar" type="button">Actualizar
+                            Medicina
+                        </button>
+                    </div>
+                </div>
+                <br>
+
+
+            </div>
+        </div>
+    </form>
+
+{% endblock %}
+{% block js %}
+{% endblock %}
+{% block script %}
+    <script>
+        const citafec = anio('{{ agenda.fecha}}')
+        $(document).ready(function () {
+
+            $('#id_fecha').val(citafec)
+        });
+
+        function anio(str) {
+            arranio = str.split(' ');
+            mes = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            day = []
+            var dd = '', mm = '', yy = ''
+            for (i = 0; arranio.length > i; i++) {
+                if (arranio[i] != 'de') {
+                    day.push(arranio[i])
+                }
+
+            }
+
+            dd = day[0]
+            for (i = 0; mes.length > i; i++) {
+                if (mes[i] == day[1]) {
+                    mm = (i + 1);
+                }
+            }
+            yy = day[2];
+            if (dd < 10) {
+                dd = '0' + dd;
+            }
+            if (mm < 10) {
+                mm = '0' + mm;
+            }
+            return (dd + '/' + mm + '/' + yy);
+        }
+
+        const c = console.log
+
+        let lt_historia_detalle = [],
+        id_seleccionado = 0,
+            por_editar = false,
+            id_momentaneo = 0,
+            id_paciente = "{{paciente.id}}",
+            receta = citafec,
+            token = "{{ csrf_token }}"
+
+        const limpiar_formulario = () => {
+            $("#id_medicamento").val(0)
+            $("#id_dosis").val(0)
+            $("#id_cantidad").val(0)
+            $("#id_duracion").val(0)
+            $("#id_frecuencia").val(0)
+            $('#id_signovital').val(0)
+            $('#id_valor').val(0)
+
+
+        }
+        const pintar_historia = (lt_historia_detalle) => {
+
+            $("#id_contenedor").empty()
+
+            lt_historia_detalle.forEach((elemento, index) => {
+                $("#id_contenedor").append(
+                    `
+                        <tr class="text-justify fondo">
+                            <td>${elemento.medicina}</td>
+                            <td>${elemento.cantidad}</td>
+                            <td>${elemento.dosis}</td>
+                            <td>${elemento.frecuencia}</td>
+                            <td>${elemento.duracion}</td>
+                            <td>
+                                <a rel="action" data-json='{"accion":"elim" ,"id":"${elemento.id}"}'
+                                class="btn btn-danger btn-sm" href="#">Eliminar</a>
+                            </td>
+                        </tr>
+                        `
+                )
+
+            })
+
+            limpiar_formulario()
+
+        }
+
+        const add_historia = async (id_medicina, medicina, cantidad, id_dosis, dosis, id_frecuencia, frecuencia, id_duracion, duracion) => {
+
+            const data = {
+                id: id_momentaneo,
+                id_medicina: id_medicina,
+                medicina: medicina,
+                cantidad: cantidad,
+                id_dosis: id_dosis,
+                dosis: dosis,
+                id_frecuencia: id_frecuencia,
+                frecuencia: frecuencia,
+                id_duracion: id_duracion,
+                duracion: duracion
+            }
+
+            id_momentaneo = id_momentaneo + 1
+            lt_historia_detalle.push(data)
+            pintar_historia(lt_historia_detalle)
+        }
+
+
+        const delete_historia = (id) => {
+
+            lt_historia_detalle = lt_historia_detalle.filter(elemento => elemento.id !== id)
+            pintar_historia(lt_historia_detalle)
+        }
+        $('#id_contenedor').on('click', 'a[rel="action"]', async function () {
+
+            let data = $(this).data('json'),
+                action = data.accion,
+                id = parseInt(data.id);
+
+            if (action === "elim") {
+                delete_historia(id)
+
+            }
+
+
+        });
+        // al cargar pinta el detalle de la historia
+
+        {% for obj_historia_detalle in list_historia_detalle %}
+            lt_historia_detalle.push(
+                {
+                    id: id_momentaneo,
+                    id_medicina: parseInt("{{ obj_historia_detalle.id_medicamento}}"),
+                    medicina: "{{ obj_historia_detalle.medicamento}}",
+                    cantidad: "{{ obj_historia_detalle.cantidad }}",
+                    id_dosis: parseInt("{{ obj_historia_detalle.id_dosis}}"),
+                    dosis: "{{ obj_historia_detalle.dosis }}",
+                    id_frecuencia: parseInt("{{ obj_historia_detalle.id_frecuencia}}"),
+                    frecuencia: "{{ obj_historia_detalle.frecuencia }}",
+                    id_duracion: parseInt("{{ obj_historia_detalle.id_duracion}}"),
+                    duracion: "{{ obj_historia_detalle.duracion }}",
+                }
+            )
+            id_momentaneo = id_momentaneo + 1
+        {% endfor %}
+
+        pintar_historia(lt_historia_detalle)
+
+
+        $(function () {
+
+            $("#id_registrar_antecedente").click(async function () {
+
+                const id_medicina = parseInt($("#id_medicamento").val()),
+                    medicina = $("#id_medicamento option:selected").text(),
+                    cantidad = $("#id_cantidad").val(),
+                    id_dosis = parseInt($("#id_dosis").val()),
+                    dosis = $("#id_dosis option:selected").text(),
+                    id_frecuencia = parseInt($("#id_frecuencia").val()),
+                    frecuencia = $("#id_frecuencia option:selected").text(),
+                    id_duracion = parseInt($("#id_duracion").val()),
+                    duracion = $("#id_duracion option:selected").text()
+
+                if (id_medicina != 0) {
+                    add_historia(id_medicina, medicina, cantidad, id_dosis, dosis, id_frecuencia, frecuencia, id_duracion, duracion)
+
+                }
+
+                return false
+
+            })
+            $("#id_actualizar").click(async function () {
+
+                const parametros = new FormData()
+                parametros.append("lt_medicina", JSON.stringify(lt_historia_detalle))
+                parametros.append("id_paciente", id_paciente)
+                parametros.append("fecha", receta)
+                parametros.append("action", "update")
+                parametros.append("csrfmiddlewaretoken", token)
+
+                const response = await fetch(`{% url "atencion:consulta" %}`,
+                    {
+                        method: "POST",
+                        body: parametros
+                    }
+                )
+
+                const resultado = await response.json()
+                if (resultado.result == "ok") {
+                    alert("Registro actualizado con exito")
+                }
+
+            })
+
+            $("#id_registrar_consulta").click(async function () {
+
+                var paciente = $('#id_paciente').val(),
+                    fecha = citafec,
+                    hora = $('#id_hora').val(),
+                    motivo = $('#id_motivo').val(),
+                    sintoma = $('#id_sintoma').val(),
+                    exploracion = $('#id_exploracion').val(),
+                    diagnostico = $('#id_diagnostico').val(),
+                    gabinete = $('#id_gabinete').val(),
+                    instruccion = $('#id_instrucciones').val(),
+                    estado = true
+                if ($('#id_estado').val() == 'on') {
+                    estado = true;
+                } else {
+                    estado = false;
+                }
+
+                const parametros2 = new FormData()
+                parametros2.append("paciente", paciente)
+                parametros2.append("fecha", fecha)
+                parametros2.append("hora", hora)
+                parametros2.append("motivo", motivo)
+                parametros2.append("sintoma", sintoma)
+                parametros2.append("exploracion", exploracion)
+                parametros2.append("diagnostico", diagnostico)
+                parametros2.append("gabinete", gabinete)
+                parametros2.append("instrucciones", instruccion)
+                parametros2.append("estado", estado)
+                parametros2.append("action", 'consulta')
+                parametros2.append("csrfmiddlewaretoken", token)
+
+                const response = await fetch(`{% url "atencion:consulta" %}`,
+                    {
+                        method: "POST",
+                        body: parametros2
+                    }
+                )
+
+
+                const resultado = await response.json()
+                if (resultado.result == "ok") {
+                    alert("Registro actualizado con exito")
+                }
+
+
+            })
+        })
+
+    </script>
+{% endblock %}
+
+

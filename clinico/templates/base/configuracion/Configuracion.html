@@ -1,0 +1,267 @@
+{% extends "Principal.html" %}
+{% load static %}
+{% block body %}
+    <img id="fondo2" src="{% static "image/295067 1.png" %}" alt="Fondo Clinico">
+    <div id="navegador">
+        <u>
+            <ul>
+                <li><a href="/">Inicio/</a></li>
+                <li><a>Configuracion/</a></li>
+
+            </ul>
+        </u>
+    </div>
+    <div class="row" id="conta"></div>
+    <br>
+    <div class="row" id="example">
+
+        <div class="col-md-2">
+
+            <center>
+                <a href="{% url 'base:configuracion_listap' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Provincias</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+
+            <center>
+                <a href="{% url 'base:configuracion_listac' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Ciudad</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+
+            <center>
+                <a href="{% url 'base:configuracion_listapro' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Profesion</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+
+            <center>
+                <a href="{% url 'base:configuracion_listati' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Titulo</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+
+            <center>
+                <a href="{% url 'base:configuracion_listasa' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Sangre</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+
+            <center>
+                <a href="{% url 'base:configuracion_listaho' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Horario</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+
+            <center>
+                <a href="{% url 'base:configuracion_listaga' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Grupo Antecedente</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+
+            <center>
+                <a href="{% url 'base:configuracion_listaa' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Antecedente</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+
+            <center>
+                <a href="{% url 'base:configuracion_listame' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Medicamento</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="{% url 'base:configuracion_listafe' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Frecuencia</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="{% url 'base:configuracion_listado' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Dosis</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="{% url 'base:configuracion_listadu' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Duracion</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="{% url 'base:configuracion_listasin' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Sintoma</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="{% url 'base:configuracion_listadia' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Diagnostico</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="{% url 'base:configuracion_listasv' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Signo Vital</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+        <div class="col-md-2">
+            <center>
+                <a href="{% url 'base:configuracion_listaseg' %}" style="color: black">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" style="width: 100px; height: 100px"
+                             src="{% static "image/settingscog_87317.png" %}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Estudio de Gabinete</h5>
+
+                        </div>
+                    </div>
+                </a>
+            </center>
+        </div>
+    </div>
+    <!-- inicio formulario Modal para Eliminar -->
+
+    <div class="modal fade" id="myModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="frmEliminar" id="frmEliminar" method="POST" action="{% url 'base:eliminar_doctor' 0 %} ">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Final Formulario Modal-->
+
+    </div>
+{% endblock %}

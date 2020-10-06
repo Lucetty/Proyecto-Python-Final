@@ -1,0 +1,195 @@
+{% extends "Principal.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/fontawesome.css" %}">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/brands.css" %}">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/solid.css" %}">
+{% endblock %}
+{% block body %}
+    <img id="fondo2" src="{% static "image/295067 1.png" %}" alt="Fondo Clinico">
+    <div id="navegador">
+        <u>
+            <ul>
+                <li><a href="/">Inicio/</a></li>
+                <li><a href="/base/Doctor/">Listado de Doctor/</a></li>
+                <li><a>Nuevo/</a></li>
+            </ul>
+        </u>
+    </div>
+    <div class="row" id="conta"></div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="/base/Doctor/" class="btn btn-danger"><span class="fa fa-caret-left"></span>
+                    Regresar</a>
+            </div>
+        </div>
+        <hr>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    {% if form.foto.value != None %}
+                        <center><H3>{{ form.nombre.value }} {{ form.apellido.value }}</H3>
+                            <img src="{% static "../media/" %}{{ form.foto.value }}"
+                                 style="width: 150px; height: 150px">
+                            <br><br>
+                            {{ form.foto }}
+                        </center>
+                    {% else %}
+                        <center><H3>DOCTOR NUEVO</H3>
+                            <img src="{% static "image/user.png" %}" style="width: 150px; height: 150px">
+                            <br><br>
+                            {{ form.foto }}
+                        </center>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <u>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a style="color: black" data-toggle="tab" href="#general">INFORMACION
+                                GENERAL</a></li>
+                            <li><a style="color: black" data-toggle="tab" href="#demografica">INFORMACION
+                                CONSULTORIO</a>
+                            </li>
+                        </ul>
+                    </u>
+                    <div class="tab-content">
+                        <div id="general" class="tab-pane fade in active">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Nombre">Nombre(s)</label>
+                                    {{ form.nombre }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Apellido">Apellido(s)</label>
+                                    {{ form.apellido }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    {% if form.foto.value != None %}
+                                        <label for="Fnacimiento">Fecha de Nacimiento</label>
+                                        {{ form.nacimiento }}
+                                    {% else %}
+                                        <label for="Fnacimiento">Fecha de Nacimiento</label>
+                                        <input type="date" name="nacimiento" class="form-control"
+                                               id="id_nacimiento" value="">
+                                    {% endif %}
+
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Sexo</label>
+                                    {{ form.sexo }}
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Telefono">Telefono</label>
+                                    {{ form.telefono }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Tmovil">Estado Civil</label>
+                                    {{ form.civil }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Email">Email</label>
+                                    {{ form.email }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Cedula">Cedula</label>
+                                    {{ form.cedula }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Pais">Provincia</label>
+                                    {{ form.provincia }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Provincia">Ciudad</label>
+                                    {{ form.ciudad }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="direccion">Direccion</label>
+                                    {{ form.direccion }}
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="demografica" class="tab-pane fade">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Ciudad">Logo</label>
+                                    {{ form.logo }}
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="Direccion">Nombre de Consultorio</label>
+                                    {{ form.consultorio }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Ciudad">Profesion</label>
+                                    {{ form.profesion }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Direccion">Titulo</label>
+                                    {{ form.titulo }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Ciudad">Direccion de consultorio</label>
+                                    {{ form.lugar }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Direccion">Horario</label>
+                                    {{ form.horario }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="Ciudad">Registro Medico</label>
+                                    {{ form.registro }}
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="Direccion">Duracion</label>
+                                    {{ form.duracion }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+
+                                <div class="form-group col-md-12">
+                                    <label for="Direccion">Estado</label>
+                                    {{ form.estado }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div>
+                            <a href="/base/doctor/" class="btn btn-danger">Cancelar</a>
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+{% block js %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+{% endblock %}
+
+

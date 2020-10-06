@@ -1,0 +1,161 @@
+{% extends "Principal.html" %}
+{% load static %}
+{% block css %}
+
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/fontawesome.css" %}">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/brands.css" %}">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/solid.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css"/>
+
+
+    <style>
+        #calendar {
+            width: 80%;
+            margin: 0 auto;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <img id="fondo2" src="{% static "image/295067 1.png" %}" alt="Fondo Clinico">
+    <div id="navegador">
+        <u>
+            <ul>
+                <li><a href="/">Inicio/</a></li>
+                <li><a>Agenda/</a></li>
+            </ul>
+        </u>
+    </div>
+    <div class="row" id="conta">
+
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="/" class="btn btn-danger"><span class="fa fa-caret-left"></span> Regresar</a>
+                <a href="/base/cita/" class="btn btn-success"><span class="fa fa-plus"></span> Nuevo Cita</a>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <div id="calendar"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="frmEliminar" id="frmEliminar" method="GET" action="{% url 'atencion:consulta' %}">
+                    {% csrf_token %}
+                    <div class="modal-header bg-primary text-light">
+                        <h3 class="modal-title ml-5 font-weight-bold">Mensaje Del Sistema</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" name="id" id="id" value="">
+                        <input type="hidden" name="action" id="action" value="">
+                        <input type="hidden" name="fecha" id="fecha" value="">
+                        <input type="hidden" name="hora" id="hora" value="">
+                        <div class="h3 text-center">
+                            <label class="text-primary font-weight-bold">Consultar al Paciente:</label>
+                            <span class="text-light font-weight-bold badge badge-danger badge-pill"
+                                  id="descripcion"></span><br>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a rel="action" onclick="eliminaragenda()" class="btn btn-danger btn-sm" href="#">Eliminar</a>
+                        <a id="editar" type="button" class="btn btn-info">Editar</a>
+                        <button type="submit" class="btn btn-primary">Consulta</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/locale/es.js"></script>
+{% endblock %}
+{% block script %}
+
+    <script>
+        function eliminaragenda() {
+            $('#frmEliminar').attr('action', '{% url 'base:eliminar_cita' 0%} ')
+            if (confirm('¿Seguro desea eliminar la cita?')) {
+                document.frmEliminar.submit();
+            }
+        }
+
+        $(document).ready(function () {
+            var calendar = $('#calendar').fullCalendar({
+                header: {
+                    language: 'es',
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                events: [
+                    {% for event in agendas %}
+                        {
+                            title: '{{ event.paciente }}',
+                            start: '{{event.fecha|date:"Y-m-d"}} {{ event.hora }}',
+                            end: null,
+                            id: '{{ event.id }}',
+
+                        },
+                    {% endfor %}
+                ],
+
+                timeFormat: 'HH:mm',
+                selectable: true,
+                selectHelper: true,
+                editable: false,
+                minTime: "07:00:00",
+                maxTime: "18:00:00",
+                allDaySlot: false,
+                slotLabelInterval: '00:15:00',
+                slotDuration: "00:15:00",
+                defaultTimedEventDuration: '00:15:00',
+
+                select: function (start, end) {
+                    var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm");
+                },
+                eventClick: function (event) {
+                    var id = event.id;
+                    var nombre = event.title;
+                    var fecha = event.start;
+                    let date = JSON.stringify(fecha)
+                    let hora = JSON.stringify(fecha)
+                    date = date.slice(1, 11)
+                    hora = hora.slice(12, 17)
+                    $('#descripcion').html(nombre);
+                    $('#frmEliminar #id').val(id);
+                    $('#frmEliminar #fecha').val(date);
+                    $('#frmEliminar #hora').val(hora);
+                    $('#editar').attr('href', '/base/cita/editar_cita/' + id + '/')
+                    $('#myModal').modal('show');
+
+                },
+
+            });
+        })
+        ;
+
+        function convert(str) {
+            var date = new Date(str),
+                mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+                day = ("0" + date.getDate()).slice(-2);
+            return [date.getFullYear(), mnth, day].join("-");
+        }
+    </script>
+{% endblock %}
+

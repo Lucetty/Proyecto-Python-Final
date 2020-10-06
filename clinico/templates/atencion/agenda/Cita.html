@@ -1,0 +1,84 @@
+{% extends "Principal.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/fontawesome.css" %}">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/brands.css" %}">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/solid.css" %}">
+{% endblock %}
+{% block body %}
+    <img id="fondo2" src="{% static "image/295067 1.png" %}" alt="Fondo Clinico">
+    <div id="navegador">
+        <u>
+            <ul>
+                <li><a href="/">Inicio/</a></li>
+                <li><a href="/base/Agenda/">Agenda/</a></li>
+                <li><a>Nuevo/</a></li>
+            </ul>
+        </u>
+    </div>
+    <div class="row" id="conta"></div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="/base/Agenda/" class="btn btn-danger"><span class="fa fa-caret-left"></span>
+                    Regresar</a>
+            </div>
+        </div>
+        <hr>
+
+        <u><h2>Nueva Cita</h2></u>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Paciente</label>
+                        {{ form.paciente }}
+                    </div>
+
+                    <div class="form-group">
+                        {% if form.paciente.value != None %}
+                            <label for="exampleInputEmail1">Fecha de Consulta</label>
+                            {{ form.fecha }}
+                        {% else %}
+                            <label for="Fnacimiento">Fecha de Consulta</label>
+                            <input type="date" name="fecha" class="form-control"
+                                   id="id_fecha" value="">
+                        {% endif %}
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Hora</label>
+                        {{ form.hora }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Motivo de consulta</label>
+                        {{ form.motivo }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Estado</label>
+                        {{ form.estado }}
+                    </div>
+                    <div>
+                        <a href="/base/Agenda/" class="btn btn-danger">Cancelar</a>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+{% endblock %}
+

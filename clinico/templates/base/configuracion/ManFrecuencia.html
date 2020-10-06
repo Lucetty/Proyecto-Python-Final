@@ -1,0 +1,44 @@
+{% extends "Principal.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/fontawesome.css" %}">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/brands.css" %}">
+    <link rel="stylesheet" href="{% static "fontawesome-free-5.14.0-web/css/solid.css" %}">
+{% endblock %}
+{% block body %}
+    <img id="fondo2" src="{% static "image/295067 1.png" %}" alt="Fondo Clinico">
+    <div id="navegador">
+        <u>
+            <ul>
+                <li><a href="/">Inicio/</a></li>
+                <li><a href="/base/Configuracion/">Configuracion/</a></li>
+                <li><a href="/base/Configuracion/Lista/Frecuencia/">Listado Frecuencia/</a></li>
+                <li><a>Nuevo/</a></li>
+            </ul>
+        </u>
+    </div>
+    <div class="row" id="conta"></div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <a href="/base/Configuracion/Lista/Frecuencia/" class="btn btn-danger"><span
+                        class="fa fa-caret-left"></span>
+                    Regresar</a>
+            </div>
+        </div>
+        <hr>
+        <form method="POST" enctype="multipart/form-data" style="position: relative;z-index: 1">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <a href="/base/Configuracion/Lista/Frecuencia/" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </form>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+{% endblock %}
+
+
